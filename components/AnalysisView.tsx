@@ -50,45 +50,6 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ result, onRetry }) => {
   return (
     <div className="space-y-6 animate-fade-in">
       
-      {/* Calorie Card */}
-      {result.calorieAnalysis && (
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
-           <div className="flex items-center gap-2 mb-4 text-teal-700 font-bold">
-            <Activity size={20} />
-            <h3>カロリー分析</h3>
-          </div>
-          <div className="flex items-center gap-6">
-            {/* Circular Progress (Simplified with CSS conic-gradient) */}
-            <div className="relative w-24 h-24 flex-shrink-0">
-               <div 
-                 className="w-full h-full rounded-full"
-                 style={{
-                   background: `conic-gradient(#0d9488 ${result.calorieAnalysis.percentage}%, #e5e7eb ${result.calorieAnalysis.percentage}% 100%)`
-                 }}
-               >
-                 <div className="absolute inset-2 bg-white rounded-full flex flex-col items-center justify-center">
-                    <span className="text-xl font-bold text-teal-700">{result.calorieAnalysis.percentage}%</span>
-                    <span className="text-[10px] text-gray-400">対1日必要量</span>
-                 </div>
-               </div>
-            </div>
-            
-            <div className="flex-1">
-                <div className="flex items-baseline gap-2 mb-1">
-                    <span className="text-2xl font-bold text-gray-800">{result.calorieAnalysis.productCalories}</span>
-                    <span className="text-sm text-gray-500">kcal (推定)</span>
-                </div>
-                <p className="text-xs text-gray-500 leading-snug">
-                    あなたの一日の推定必要カロリー: <strong>{result.calorieAnalysis.userDailyNeed}kcal</strong>
-                </p>
-                <p className="text-xs text-teal-600 mt-2 bg-teal-50 p-2 rounded-lg">
-                    {result.calorieAnalysis.note}
-                </p>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Summary */}
       <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
         <div className="flex items-center gap-2 mb-3 text-teal-700 font-bold">
@@ -133,6 +94,45 @@ const AnalysisView: React.FC<AnalysisViewProps> = ({ result, onRetry }) => {
           </ul>
         </div>
       </div>
+
+      {/* Calorie Card - Moved below Pros/Cons */}
+      {result.calorieAnalysis && (
+        <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100">
+           <div className="flex items-center gap-2 mb-4 text-teal-700 font-bold">
+            <Activity size={20} />
+            <h3>カロリー分析</h3>
+          </div>
+          <div className="flex items-center gap-6">
+            {/* Circular Progress (Simplified with CSS conic-gradient) */}
+            <div className="relative w-24 h-24 flex-shrink-0">
+               <div 
+                 className="w-full h-full rounded-full"
+                 style={{
+                   background: `conic-gradient(#0d9488 ${result.calorieAnalysis.percentage}%, #e5e7eb ${result.calorieAnalysis.percentage}% 100%)`
+                 }}
+               >
+                 <div className="absolute inset-2 bg-white rounded-full flex flex-col items-center justify-center">
+                    <span className="text-xl font-bold text-teal-700">{result.calorieAnalysis.percentage}%</span>
+                    <span className="text-[10px] text-gray-400">対1日必要量</span>
+                 </div>
+               </div>
+            </div>
+            
+            <div className="flex-1">
+                <div className="flex items-baseline gap-2 mb-1">
+                    <span className="text-2xl font-bold text-gray-800">{result.calorieAnalysis.productCalories}</span>
+                    <span className="text-sm text-gray-500">kcal (推定)</span>
+                </div>
+                <p className="text-xs text-gray-500 leading-snug">
+                    あなたの一日の推定必要カロリー: <strong>{result.calorieAnalysis.userDailyNeed}kcal</strong>
+                </p>
+                <p className="text-xs text-teal-600 mt-2 bg-teal-50 p-2 rounded-lg">
+                    {result.calorieAnalysis.note}
+                </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Recommendations */}
       <div className="mt-8">
