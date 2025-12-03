@@ -4,9 +4,8 @@ import UserProfileForm from './components/UserProfileForm';
 import ImageCapture from './components/ImageCapture';
 import AnalysisView from './components/AnalysisView';
 import { analyzeHealthImpact } from './services/geminiService';
-import { Settings, History, PlusCircle, ChevronLeft, Loader2, Sparkles, Trash2, Lock, AlertCircle } from 'lucide-react';
+import { Settings, History, PlusCircle, ChevronLeft, Loader2, Sparkles, Trash2, Lock, AlertCircle, Share2 } from 'lucide-react';
 import clsx from 'clsx';
-
 function App() {
   // State
   const [appState, setAppState] = useState<AppState>(AppState.ONBOARDING);
@@ -115,6 +114,29 @@ function App() {
       setActiveTab('scan');
   };
 
+  const handleShareApp = async () => {
+    const shareData = {
+      title: 'VitalScope',
+      text: '私の健康状態に合わせて商品をAI診断！あなたもVitalScopeでチェックしてみない？',
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        // User cancelled or error
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
+        alert('URLをコピーしました');
+      } catch (err) {
+        // clipboard permission error
+      }
+    }
+  };
+
   // Check if profile is configured
   const isProfileConfigured = userProfile.age && userProfile.gender && userProfile.healthContext;
 
@@ -139,6 +161,14 @@ function App() {
             )}
           <h1 className="text-lg font-bold text-teal-900 tracking-tight">VitalScope</h1>
         </div>
+
+        <button 
+            onClick={handleShareApp}
+            className="p-2 text-teal-600 bg-teal-50 hover:bg-teal-100 rounded-full transition-colors"
+            title="アプリをシェア"
+        >
+            <Share2 size={20} />
+        </button>
       </header>
 
       {/* Main Content */}
