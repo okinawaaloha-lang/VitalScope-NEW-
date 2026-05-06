@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserProfile } from '../types';
-import { Save, User, Info, ShieldCheck, CheckSquare, Square } from 'lucide-react';
+import { Save, User, Info, ShieldCheck, CheckSquare, Square, Sparkles, ThumbsUp, ThumbsDown, Flame } from 'lucide-react';
 import clsx from 'clsx';
 
 interface UserProfileFormProps {
@@ -56,6 +56,45 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
             <li>あなたの悩みや目標に応じてメリット・デメリットを評価するため、<strong>プロフィールの入力が必要</strong>です。</li>
             <li>入力された情報は<strong>すべてあなたの端末にのみ保存</strong>され、外部には送信されません。</li>
           </ul>
+        </div>
+      )}
+
+      {/* Sample Result Preview (only on onboarding) */}
+      {!isEditing && (
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2 text-xs font-bold text-gray-500 uppercase tracking-wider">
+            <Sparkles size={14} className="text-teal-500" />
+            診断結果サンプル
+          </div>
+          <div className="relative bg-gradient-to-br from-white to-teal-50/30 border border-gray-200 rounded-xl p-4 shadow-sm overflow-hidden">
+            <span className="absolute top-2 right-2 text-[10px] font-bold text-teal-600 bg-teal-100 px-2 py-0.5 rounded-full">
+              PREVIEW
+            </span>
+            <p className="text-xs text-gray-500 mb-1">商品例：梅おにぎり</p>
+            <p className="text-sm font-bold text-gray-800 leading-snug mb-3">
+              塩分控えめが目標のあなたには、量より頻度に注意が必要な一品です。
+            </p>
+            <div className="flex items-center gap-2 mb-3 text-xs">
+              <div className="flex items-center gap-1 bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-bold">
+                <Flame size={12} />
+                200 kcal
+              </div>
+              <span className="text-gray-500">1日の目安の約 10%</span>
+            </div>
+            <div className="space-y-1.5 text-xs">
+              <div className="flex items-start gap-2 text-emerald-700">
+                <ThumbsUp size={14} className="shrink-0 mt-0.5" />
+                <span>手軽にエネルギー補給ができる</span>
+              </div>
+              <div className="flex items-start gap-2 text-rose-700">
+                <ThumbsDown size={14} className="shrink-0 mt-0.5" />
+                <span>梅干しの塩分が高めなので食べ過ぎ注意</span>
+              </div>
+            </div>
+          </div>
+          <p className="text-[11px] text-gray-400 mt-2 text-center">
+            ↑ プロフィール登録後、撮影した商品ごとにこのような結果が表示されます
+          </p>
         </div>
       )}
 
