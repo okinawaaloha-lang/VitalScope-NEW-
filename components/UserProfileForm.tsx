@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserProfile } from '../types';
-import { Save, User, Info, ShieldCheck, CheckSquare, Square, AlertCircle } from 'lucide-react';
+import { Save, User, Info, ShieldCheck, CheckSquare, Square, AlertCircle, UtensilsCrossed, Pill, SprayCan } from 'lucide-react';
 import clsx from 'clsx';
 import Logo from './Logo';
 
@@ -74,6 +74,38 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
             <li>あなたの悩みや目標に応じてメリット・デメリットを評価するため、<strong>プロフィールの入力が必要</strong>です。</li>
             <li>入力された情報は<strong>すべてあなたの端末にのみ保存</strong>され、外部には送信されません。</li>
           </ul>
+        </div>
+      )}
+
+      {/* Scan Categories (only on onboarding) */}
+      {!isEditing && (
+        <div className="mb-6">
+          <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 text-center">
+            こんな商品を診断できます
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            <div className="flex flex-col items-center gap-1.5 bg-white border border-gray-200 rounded-xl p-3 text-center">
+              <div className="w-10 h-10 bg-orange-50 rounded-full flex items-center justify-center text-orange-500">
+                <UtensilsCrossed size={20} />
+              </div>
+              <p className="text-xs font-bold text-gray-700 leading-tight">食品・飲料</p>
+              <p className="text-[10px] text-gray-400 leading-tight">お菓子・お弁当など</p>
+            </div>
+            <div className="flex flex-col items-center gap-1.5 bg-white border border-gray-200 rounded-xl p-3 text-center">
+              <div className="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-500">
+                <Pill size={20} />
+              </div>
+              <p className="text-xs font-bold text-gray-700 leading-tight">サプリ</p>
+              <p className="text-[10px] text-gray-400 leading-tight">健康食品・栄養剤</p>
+            </div>
+            <div className="flex flex-col items-center gap-1.5 bg-white border border-gray-200 rounded-xl p-3 text-center">
+              <div className="w-10 h-10 bg-sky-50 rounded-full flex items-center justify-center text-sky-500">
+                <SprayCan size={20} />
+              </div>
+              <p className="text-xs font-bold text-gray-700 leading-tight">日用品</p>
+              <p className="text-[10px] text-gray-400 leading-tight">化粧品・洗剤など</p>
+            </div>
+          </div>
         </div>
       )}
 
