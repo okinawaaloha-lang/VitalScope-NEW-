@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserProfile } from '../types';
 import { Save, User, Info, ShieldCheck, CheckSquare, Square } from 'lucide-react';
 import clsx from 'clsx';
+import Logo from './Logo';
 
 interface UserProfileFormProps {
   initialProfile: UserProfile;
@@ -36,12 +37,23 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
       
       {/* Header / Intro */}
       <div className="text-center mb-6">
-        <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3 text-teal-600">
-          <User size={32} />
-        </div>
+        {isEditing ? (
+          <div className="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-3 text-teal-600">
+            <User size={32} />
+          </div>
+        ) : (
+          <div className="mx-auto mb-3">
+            <Logo size={64} />
+          </div>
+        )}
         <h2 className="text-xl font-bold text-gray-800">
           {isEditing ? 'プロフィールの設定' : 'VitalScopeへようこそ'}
         </h2>
+        {!isEditing && (
+          <p className="text-xs text-gray-500 mt-1 tracking-wide">
+            あなたの健康を、まるごとスコープ。
+          </p>
+        )}
       </div>
 
       {/* IMPORTANT: Explanation Card (Strict Requirement) */}

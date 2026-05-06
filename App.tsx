@@ -6,6 +6,7 @@ import AnalysisView from './components/AnalysisView';
 import { analyzeHealthImpact } from './services/geminiService';
 import { Settings, History, PlusCircle, ChevronLeft, Loader2, Sparkles, Trash2, Lock, AlertCircle, Share2 } from 'lucide-react';
 import clsx from 'clsx';
+import Logo from './components/Logo';
 function App() {
   // State
   const [appState, setAppState] = useState<AppState>(AppState.ONBOARDING);
@@ -159,6 +160,7 @@ function App() {
                     <ChevronLeft />
                 </button>
             )}
+          <Logo size={28} />
           <h1 className="text-lg font-bold text-teal-900 tracking-tight">VitalScope</h1>
         </div>
 
