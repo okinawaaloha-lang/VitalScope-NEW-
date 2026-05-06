@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { UserProfile } from '../types';
-import { Save, User, Info, ShieldCheck, CheckSquare, Square } from 'lucide-react';
+import { Save, User, Info, ShieldCheck, CheckSquare, Square, AlertCircle } from 'lucide-react';
 import clsx from 'clsx';
 
 interface UserProfileFormProps {
@@ -29,7 +29,13 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
     onSave(profile);
   };
 
-  const isFormValid = profile.age && profile.gender && profile.healthContext && hasConsented;
+  const missingFields: string[] = [];
+  if (!profile.age) missingFields.push('年齢');
+  if (!profile.gender) missingFields.push('性別');
+  if (!profile.healthContext) missingFields.push('健康状態');
+  if (!hasConsented) missingFields.push('同意チェック');
+
+  const isFormValid = missingFields.length === 0;
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-md mx-auto bg-white p-6 rounded-2xl shadow-sm border border-gray-100 animate-fade-in">
@@ -135,6 +141,17 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
                 </ul>
             </div>
         </div>
+
+        {/* Missing Fields Hint */}
+        {!isFormValid && (
+          <div className="flex items-start gap-2 p-3 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs">
+            <AlertCircle size={16} className="shrink-0 mt-0.5" />
+            <p>
+              <span className="font-bold">あと一歩です：</span>
+              {missingFields.join('・')}を入力してください。
+            </p>
+          </div>
+        )}
 
         {/* Submit Button */}
         <button
