@@ -81,7 +81,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
             placeholder="例: 35"
             value={profile.age}
             onChange={(e) => setProfile({ ...profile, age: e.target.value })}
-            className="w-full p-4 rounded-xl border border-gray-300 bg-slate-800 text-white placeholder-gray-400 focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all font-bold text-lg"
+            className="w-full p-4 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all font-bold text-lg"
           />
         </div>
 
@@ -123,7 +123,7 @@ const UserProfileForm: React.FC<UserProfileFormProps> = ({ initialProfile, onSav
               value={profile.healthContext}
               onChange={(e) => setProfile({ ...profile, healthContext: e.target.value })}
               placeholder="例：最近、健康診断で血圧が高めと言われたので塩分を控えたいです。甲殻類のアレルギーがあります。また、デスクワーク中心で運動不足のため、むくみやすいのが悩みです。"
-              className="w-full p-4 rounded-xl border border-gray-300 bg-slate-800 text-white placeholder-gray-500 focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all text-sm leading-relaxed resize-none"
+              className="w-full p-4 rounded-xl border border-gray-300 bg-white text-gray-900 placeholder-gray-400 focus:ring-4 focus:ring-teal-500/20 focus:border-teal-500 outline-none transition-all text-sm leading-relaxed resize-none"
             />
           </div>
           <p className="text-xs text-gray-500 mt-2 text-right">
